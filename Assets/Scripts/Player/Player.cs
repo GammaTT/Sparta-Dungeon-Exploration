@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerController controller;
+    public PlayerCondition condition;
     public PlayerSurvey survey;
 
     private void Awake()
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.player = this;
 
         controller = GetComponent<PlayerController>();
+        condition = GetComponent<PlayerCondition>();
         survey = GetComponent<PlayerSurvey>();
     }
     // Start is called before the first frame update

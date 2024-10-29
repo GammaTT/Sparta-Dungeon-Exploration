@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
     private Vector2 mouseDelta;
 
-    Rigidbody rigidbody;
+    public Rigidbody rigidbody;
 
     private void Awake()
     {
@@ -128,13 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(rays[i], 1f, groundLayerMask))
             {
-                Debug.Log("true");
                 return true;
 
             }
         }
-        Debug.Log("false");
-
         return false;
 
     }
