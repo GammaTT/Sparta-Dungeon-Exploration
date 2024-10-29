@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,7 +37,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (transform.right * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.6f) + (transform.up * 0.01f) ,Vector3.down)
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            Debug.DrawRay(rays[i].origin, Vector3.down, Color.red);
+        }
     }
 
     private void FixedUpdate()
@@ -80,6 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
+
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -99,24 +112,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Ray[] rays = new Ray[4];
+
     bool IsGrounded()
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f) ,Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f) ,Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f) ,Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f) ,Vector3.down)
+            new Ray(transform.position + (transform.forward * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (transform.right * 0.6f) + (transform.up * 0.01f) ,Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.6f) + (transform.up * 0.01f) ,Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
+            if (Physics.Raycast(rays[i], 1f, groundLayerMask))
             {
+                Debug.Log("true");
                 return true;
+
             }
         }
+        Debug.Log("false");
 
         return false;
+
     }
 }

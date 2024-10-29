@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    PlayerController controller;
-    PlayerSurvey survey;
+    public PlayerController controller;
+    public PlayerSurvey survey;
 
     private void Awake()
     {

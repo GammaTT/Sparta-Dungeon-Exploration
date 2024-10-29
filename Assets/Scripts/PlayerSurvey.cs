@@ -6,6 +6,8 @@ public class PlayerSurvey : MonoBehaviour
 {
     Camera camera;
 
+    [SerializeField] private float rayDistance;
+
     public RaycastHit hit;
 
     public GameObject hitObject;
@@ -24,11 +26,13 @@ public class PlayerSurvey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 start = transform.position;
-        Vector3 direction = transform.forward;
-
+        //테스트용 레이
         Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.red);
 
+    }
+
+    private void FixedUpdate()
+    {
         CheckLookObject();
     }
 
@@ -36,7 +40,7 @@ public class PlayerSurvey : MonoBehaviour
     {
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
 
-        if (Physics.Raycast(ray, out hit, 15f))
+        if (Physics.Raycast(ray, out hit, rayDistance))
         {
             hitObject = hit.collider.gameObject;
         }
