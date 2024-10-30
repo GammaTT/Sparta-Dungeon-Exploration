@@ -16,4 +16,4 @@ MonoBehaviour:
   ItemDescription: "\uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uC774\uB3D9\uC18D\uB3C4\uB97C
     \uC99D\uAC00\uC2DC\uCF1C\uC900\uB2E4."
   itemDuration: 10
-  itemEffect: 30
+  itemEffect: 50

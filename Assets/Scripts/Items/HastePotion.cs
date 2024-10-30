@@ -14,7 +14,9 @@ public class HastePotion : Item
         float originSpeed = controller.moveSpeed;
         float speedMulti = itemData.itemEffect * 0.01f;
 
-        controller.moveSpeed = originSpeed * speedMulti;
+        controller.moveSpeed += originSpeed * speedMulti;
+
+        Debug.Log(speedMulti);
 
         while (true)
         {

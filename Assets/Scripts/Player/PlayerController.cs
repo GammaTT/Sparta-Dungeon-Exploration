@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody rigidbody;
 
+    public bool isOnMovingPlatform = false;
+    public Transform movingPlatform;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -84,6 +87,11 @@ public class PlayerController : MonoBehaviour
         direction.y = rigidbody.velocity.y;
 
         rigidbody.velocity = direction;
+
+        if (isOnMovingPlatform)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, movingPlatform.position.z);
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)

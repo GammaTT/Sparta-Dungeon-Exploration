@@ -13,7 +13,9 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        int playerLayer = LayerMask.NameToLayer("Player");
+
+        if (other.gameObject.layer == playerLayer)
         {
             other.GetComponent<PlayerConsumableItem>().UseItem(this);
             Destroy(this.gameObject, 0.4f);
